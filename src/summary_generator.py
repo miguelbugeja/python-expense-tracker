@@ -39,3 +39,29 @@ class SummaryGenerator:
             summary["categories"][category.value] = category_data
 
         return summary
+
+    def view_summary(self, manager):
+        if manager.get_expenses_count() <= 0:
+            return "No expenses found."
+        else:
+            result = ""
+            summary = self.generate_summary(manager)
+
+            result += "Summary: \n\n"
+
+            for k, v in summary.items():
+                if k == "categories":
+                    result += "Categories: \n"
+                    for categoryName, data in v.items():
+                        if data["total"] > 0:
+                            result += f"\n{categoryName}: €{data["total"]:.2f}\n"
+                            for expense in data["expenses"]:
+                                result += f"- {expense["name"]}: €{expense["price"]:.2f}\n"
+                else:
+                    result += f"{k}: {v}\n\n"
+
+            return result
+
+    def export_summary_txt(self, manager):
+        with open("summary.txt", "w") as f:
+            f.write(self.view_summary(manager))

@@ -16,7 +16,7 @@ def main():
             print("3. Edit expense")
             print("4. Delete expense")
             print("5. View Total Expenses")
-            print("6. Get Summary")
+            print("6. Export Summary")
             print("7. Exit")
 
             choice = int(input("Enter your choice: "))
@@ -48,21 +48,8 @@ def main():
                 if manager.get_expenses_count() <= 0:
                     print("No expenses found.\n")
                 else:
-                    summary = summary_generator.generate_summary(manager)
-
-                    print("Summary: ")
-
-                    for k, v in summary.items():
-                        if k == "categories":
-                            print("Categories: ")
-                            for categoryName, data in v.items():
-                                if data["total"] > 0:
-                                    print(f"{categoryName}: €{data["total"]:.2f}")
-                                    for expense in data["expenses"]:
-                                        print(f"- {expense["name"]}: €{expense["price"]:.2f}")
-                        else:
-                            print(f"{k}: {v}\n")
-                    print()
+                    summary_generator.export_summary_txt(manager)
+                    print("Summary has been saved successfully!\n")
 
             elif choice == 7:
                 break
