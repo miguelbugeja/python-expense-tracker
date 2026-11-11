@@ -1,17 +1,13 @@
-from operator import index
-
 from expense import Expense
 from expense_manager import ExpenseManager
-from src import expense
 
 
 def main():
 
     manager = ExpenseManager()
 
-    try:
-
-        while True:
+    while True:
+        try:
             print("Expense Tracker - Main Menu:")
             print("1. View expenses")
             print("2. Add expense")
@@ -43,8 +39,8 @@ def main():
             else:
                 print("Invalid choice.\n")
 
-    except (ValueError, TypeError, IndexError) as e:
-        print(e)
+        except (ValueError, TypeError, IndexError) as e:
+            print(str(e) + "\n")
 
 def add_expense(manager):
     name = input("Enter expense name: ")
