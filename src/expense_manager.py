@@ -1,4 +1,5 @@
 from expense import Expense
+from category import Category
 
 class ExpenseManager:
 
@@ -36,3 +37,14 @@ class ExpenseManager:
             raise IndexError("Invalid expense position.")
 
         self.expenses.pop(index)
+
+    def get_total(self):
+        return sum(expense.price for expense in self.expenses)
+
+    def get_total_by_category(self):
+        category_total = {category: 0 for category in Category}
+
+        for expense in self.expenses:
+            category_total[expense.category] += expense.price
+
+        return category_total

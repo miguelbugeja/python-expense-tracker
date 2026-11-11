@@ -13,7 +13,8 @@ def main():
             print("2. Add expense")
             print("3. Edit expense")
             print("4. Delete expense")
-            print("5. Exit")
+            print("5. Get Total Expenses")
+            print("6. Exit")
 
             choice = int(input("Enter your choice: "))
 
@@ -34,6 +35,13 @@ def main():
                 delete_expense(manager)
 
             elif choice == 5:
+                print(f"Total Amount: €{manager.get_total():.2f}\n")
+                for k, v in manager.get_total_by_category().items():
+                    if v > 0:
+                        print(f"{k.value}: €{v:.2f}")
+                print()
+
+            elif choice == 6:
                 break
 
             else:
