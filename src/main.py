@@ -1,6 +1,6 @@
 from expense import Expense
 from expense_manager import ExpenseManager
-
+from category import Category
 
 def main():
 
@@ -41,16 +41,33 @@ def main():
 
         except (ValueError, TypeError, IndexError) as e:
             print(str(e) + "\n")
+            
+def view_categories():
+    print("Categories:")
+    for position, category in enumerate(Category, start=1):
+        print(f"{position}. {category.value}")
 
 def add_expense(manager):
     name = input("Enter expense name: ")
     price = float(input("Enter expense price: "))
 
-    new_expense = Expense(name, price)
+    print()
+    view_categories()
+
+    choice = int(input("Enter category number: "))
+
+    categories = list(Category)
+
+    if choice < 1 or choice > len(categories):
+        raise IndexError("Invalid category number.")
+
+    category = categories[choice - 1]
+
+    new_expense = Expense(name, price, category)
 
     manager.add_expense(new_expense)
 
-    print(f"Expense {name} added successfully.\n")
+    print(f"Expense ({manager.get_expense(manager.get_expenses_count()-1)}) added successfully.\n")
 
 def edit_expense(manager):
 
@@ -64,7 +81,19 @@ def edit_expense(manager):
         name = input("Enter expense name: ")
         price = float(input("Enter expense price: "))
 
-        manager.edit_expense(expense_index, name, price)
+        print()
+        view_categories()
+
+        choice = int(input("Enter category number: "))
+
+        categories = list(Category)
+
+        if choice < 1 or choice > len(categories):
+            raise IndexError("Invalid category number.")
+
+        category = categories[choice - 1]
+
+        manager.edit_expense(expense_index, name, price, category)
         print("Expense edited successfully.\n")
 
     except (ValueError, TypeError, IndexError) as e:

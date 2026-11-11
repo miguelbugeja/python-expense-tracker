@@ -15,7 +15,7 @@ class ExpenseManager:
         position = 1
 
         for expense in self.expenses:
-            print(f"{position}. {expense.name}: €{expense.price:.2f}")
+            print(f"{position}. ({expense.category.value}) {expense.name}: €{expense.price:.2f}")
             position += 1
 
     def get_expense(self, index):
@@ -23,13 +23,13 @@ class ExpenseManager:
             raise IndexError("Invalid expense position.")
 
         expense = self.expenses[index]
-        return f"{expense.name}: €{expense.price:.2f}"
+        return f"({expense.category.value}) {expense.name}: €{expense.price:.2f}"
 
-    def edit_expense(self, index, name, price):
+    def edit_expense(self, index, name, price, category):
         if index < 0 or index >= len(self.expenses):
             raise IndexError("Invalid expense position.")
 
-        self.expenses[index] = Expense(name, price)
+        self.expenses[index] = Expense(name, price, category)
 
     def delete_expense(self, index):
         if index < 0 or index >= len(self.expenses):
