@@ -2,23 +2,59 @@ from operator import index
 
 from expense import Expense
 from expense_manager import ExpenseManager
+from src import expense
+
 
 def main():
 
+    manager = ExpenseManager()
+
     try:
-        manager = ExpenseManager()
 
-        ex1 = Expense("Food", 10)
-        ex2 = Expense("Food", 20)
+        while True:
+            print("Expense Tracker - Main Menu:")
+            print("1. View expenses")
+            print("2. Add expense")
+            print("3. Edit expense")
+            print("4. Delete expense")
+            print("5. Exit")
 
-        manager.add_expense(ex1)
-        manager.add_expense(ex2)
+            choice = int(input("Enter your choice: "))
 
-        while manager.get_expenses_count() > 0:
-            delete_expense(manager)
+            if choice == 1:
+                if manager.get_expenses_count() <= 0:
+                    print("No expenses found.\n")
+                else:
+                    manager.view_expenses()
+                    print()
 
-    except (ValueError, TypeError) as e:
+            elif choice == 2:
+                add_expense(manager)
+
+            elif choice == 3:
+                edit_expense(manager)
+
+            elif choice == 4:
+                delete_expense(manager)
+
+            elif choice == 5:
+                break
+
+            else:
+                print("Invalid choice.\n")
+
+    except (ValueError, TypeError, IndexError) as e:
         print(e)
+
+def add_expense(manager):
+    name = input("Enter expense name: ")
+    price = float(input("Enter expense price: "))
+
+    new_expense = Expense(name, price)
+
+    manager.add_expense(new_expense)
+
+    print(f"Expense {name} added successfully.\n")
 
 def edit_expense(manager):
 
@@ -27,7 +63,7 @@ def edit_expense(manager):
     try:
         position = int(input("Enter position: "))
         expense_index = position - 1
-        print("Editing expense: (" + manager.get_expense(expense_index) + ")\n")
+        print(f"Editing expense: ({manager.get_expense(expense_index)})\n")
 
         name = input("Enter expense name: ")
         price = float(input("Enter expense price: "))
@@ -36,7 +72,7 @@ def edit_expense(manager):
         print("Expense edited successfully.\n")
 
     except (ValueError, TypeError, IndexError) as e:
-        print("Failed to edit expense: " + str(e))
+        print(f"Failed to edit expense: {str(e)}\n")
 
 def delete_expense(manager):
 
@@ -46,13 +82,13 @@ def delete_expense(manager):
         position = int(input("Enter position: "))
         expense_index = position - 1
 
-        expense = manager.get_expense(expense_index)
+        deleted_expense = manager.get_expense(expense_index)
 
         manager.delete_expense(expense_index)
-        print("Expense: (" + expense + ") was deleted successfully!\n")
+        print(f"Expense: ({deleted_expense}) was deleted successfully!\n")
 
     except IndexError as e:
-        print("Failed to delete expense: " + str(e) + "\n")
+        print(f"Failed to delete expense: {str(e)}\n")
 
 if __name__ == "__main__":
     main()
