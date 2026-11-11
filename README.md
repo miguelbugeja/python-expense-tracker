@@ -4,11 +4,11 @@
 A simple Python-based expense tracker that allows users to record, manage, categorise, and monitor their expenses. Built as a learning project to practice Python fundamentals, file handling, and data management.
 
 ## Objectives
-- Practise Python fundamentals.
+- Practice Python fundamentals.
 - Apply object-oriented programming.
 - Learn file handling and data persistance.
 - Implement input validation and exception handling.
-- Practise Git and version control.
+- Practice Git and version control.
 
 ## Implemented Features
 - [x] Add expenses.
@@ -16,9 +16,10 @@ A simple Python-based expense tracker that allows users to record, manage, categ
 - [x] Categorise expenses.
 - [x] Edit and delete expenses.
 - [x] Calculate total expenses.
+- [x] Generate expenses summaries.
 
 ## Planned Features
-- [ ] Generate expenses summaries.
+- [ ] Implement data persistancy.
 
 ## Technologies
 - Python
