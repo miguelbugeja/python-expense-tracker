@@ -48,8 +48,20 @@ def main():
                 if manager.get_expenses_count() <= 0:
                     print("No expenses found.\n")
                 else:
-                    summary_generator.export_summary_txt(manager)
-                    print("Summary has been saved successfully!\n")
+                    print("1. Export as .txt")
+                    print("2. Export as .json")
+                    choice = int(input("Enter your choice: "))
+
+                    if choice == 1:
+                        summary_generator.export_summary_txt(manager)
+                        print("Summary has been saved as a .txt file!\n")
+
+                    elif choice == 2:
+                        summary_generator.export_summary_json(manager)
+                        print("Summary has been saved as a .json file!\n")
+
+                    else:
+                        print("Invalid choice.\n")
 
             elif choice == 7:
                 break

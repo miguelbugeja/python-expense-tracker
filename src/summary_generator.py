@@ -1,3 +1,5 @@
+import json
+
 class SummaryGenerator:
 
     def generate_summary(self, manager):
@@ -63,5 +65,11 @@ class SummaryGenerator:
             return result
 
     def export_summary_txt(self, manager):
-        with open("summary.txt", "w") as f:
+        with open("summary.txt", "w", encoding="utf-8") as f:
             f.write(self.view_summary(manager))
+
+    def export_summary_json(self, manager):
+        summary = self.generate_summary(manager)
+
+        with open("summary.json", "w", encoding="utf-8") as f:
+            json.dump(summary, f, indent=4)
