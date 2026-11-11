@@ -13,10 +13,11 @@ A simple Python-based expense tracker that allows users to record, manage, categ
 ## Implemented Features
 - [x] Add expenses.
 - [x] View all recorded expenses.
+- [x] Categorise expenses.
+- [x] Edit and delete expenses.
 
 ## Planned Features
-- [ ] Categorise expenses.
-- [ ] Edit and delete expenses.
+
 - [ ] Calculate total expenses.
 - [ ] Generate expenses summaries.
 
