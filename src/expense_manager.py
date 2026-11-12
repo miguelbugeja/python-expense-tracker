@@ -1,5 +1,5 @@
-from expense import Expense
-from category import Category
+from .expense import Expense
+from .category import Category
 
 class ExpenseManager:
 

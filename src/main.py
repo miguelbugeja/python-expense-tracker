@@ -1,8 +1,8 @@
-from expense import Expense
-from expense_manager import ExpenseManager
-from category import Category
-from summary_generator import SummaryGenerator
-from expense_storage import ExpenseStorage
+from .expense import Expense
+from .expense_manager import ExpenseManager
+from .category import Category
+from .summary_generator import SummaryGenerator
+from .expense_storage import ExpenseStorage
 
 def main():
 

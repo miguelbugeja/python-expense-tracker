@@ -1,6 +1,6 @@
 import json
 import os
-from category import Category
+from .category import Category
 
 from src.expense import Expense
 
