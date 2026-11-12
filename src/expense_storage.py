@@ -1,5 +1,9 @@
 import json
 import os
+from category import Category
+
+from src.expense import Expense
+
 
 class ExpenseStorage:
 
@@ -20,3 +24,27 @@ class ExpenseStorage:
 
         with open(self.path, "w", encoding="utf-8") as file:
             json.dump(expenses_dict_list, file, indent=4)
+
+    def load_expenses(self):
+
+        try:
+            with open(self.path, encoding="utf-8") as file:
+                expenses_dict = json.load(file)
+                expenses = []
+
+                for expense_dict in expenses_dict:
+                    expense = Expense(
+                        expense_dict["name"],
+                        expense_dict["price"],
+                        Category(expense_dict["category"])
+                    )
+                    expenses.append(expense)
+
+                return expenses
+
+        except FileNotFoundError:
+            return []
+
+        except (json.decoder.JSONDecodeError, ValueError):
+            print("Data stored cannot be loaded.")
+            return []

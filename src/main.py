@@ -8,6 +8,9 @@ def main():
 
     manager = ExpenseManager()
     summary_generator = SummaryGenerator()
+    expense_storage = ExpenseStorage()
+
+    manager.expenses = expense_storage.load_expenses()
 
     while True:
         try:
@@ -66,7 +69,7 @@ def main():
                         print("Invalid choice.\n")
 
             elif choice == 7:
-                save_expenses(manager.expenses)
+                save_expenses(manager.expenses, expense_storage)
                 print("Data Saved Successfully!\n")
 
             elif choice == 8:
@@ -151,9 +154,7 @@ def delete_expense(manager):
     except IndexError as e:
         print(f"Failed to delete expense: {str(e)}\n")
 
-def save_expenses(expenses):
-
-    expense_storage = ExpenseStorage()
+def save_expenses(expenses, expense_storage):
     expense_storage.save_expenses(expenses)
 
 if __name__ == "__main__":
