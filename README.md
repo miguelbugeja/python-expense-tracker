@@ -19,7 +19,7 @@ A simple Python-based expense tracker that allows users to record, manage, categ
 - [x] Generate expenses summaries.
 
 ## Planned Features
-- [ ] Implement data persistancy.
+- [ ] Implement data persistency.
 
 ## Technologies
 - Python

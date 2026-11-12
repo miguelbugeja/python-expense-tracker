@@ -2,6 +2,7 @@ from expense import Expense
 from expense_manager import ExpenseManager
 from category import Category
 from summary_generator import SummaryGenerator
+from expense_storage import ExpenseStorage
 
 def main():
 
@@ -17,7 +18,8 @@ def main():
             print("4. Delete expense")
             print("5. View Total Expenses")
             print("6. Export Summary")
-            print("7. Exit")
+            print("7. Save data")
+            print("8. Exit")
 
             choice = int(input("Enter your choice: "))
 
@@ -64,6 +66,10 @@ def main():
                         print("Invalid choice.\n")
 
             elif choice == 7:
+                save_expenses(manager.expenses)
+                print("Data Saved Successfully!\n")
+
+            elif choice == 8:
                 break
 
             else:
@@ -144,6 +150,11 @@ def delete_expense(manager):
 
     except IndexError as e:
         print(f"Failed to delete expense: {str(e)}\n")
+
+def save_expenses(expenses):
+
+    expense_storage = ExpenseStorage()
+    expense_storage.save_expenses(expenses)
 
 if __name__ == "__main__":
     main()
